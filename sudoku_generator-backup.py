@@ -24,18 +24,14 @@ class SudokuGenerator:
     def __init__(self, row_length, removed_cells):
         # Initialize row length
         self.row_length = 9
-        self.removed_cells = removed_cells        
-        # TODO
-        self.board = None
-        self.box_length = math.sqrt(row_length)
-        # Determine number of cells to be removed based on difficulty
         
-#        if SudokuGenerator().difficulty == "easy":
-#            self.removed_cells = 30
-#        elif SudokuGenerator().difficulty == "medium":
-#            self.removed_cells = 40
-#        elif SudokuGenerator().difficulty == "hard":
-#            self.removed_cells = 50
+        # Determine number of cells to be removed based on difficulty
+        if SudokuGenerator().difficulty == "easy":
+            self.removed_cells = 30
+        elif SudokuGenerator().difficulty == "medium":
+            self.removed_cells = 40
+        elif SudokuGenerator().difficulty == "hard":
+            self.removed_cells = 50
         
     '''
     Returns a 2D python list of numbers which represents the board
