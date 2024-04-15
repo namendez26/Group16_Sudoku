@@ -1,3 +1,4 @@
+from cell import Cell
 import pygame
 
 WIDTH = 550
@@ -41,7 +42,6 @@ class Board:
             return [row + 1, col + 1]
         else:
             return None
-
 
     def clear(self):
         pass
