@@ -1,6 +1,7 @@
 import pygame
-pygame.innit()
+from cell2 import *
 
+pygame.init()
 
 class Board:
     def __init__(self, width, height, screen, difficulty):
@@ -107,5 +108,4 @@ class Board:
         return num not in [self.cells[row][col].value for row in range(9)]
 
     def valid_in_box(self, row_start, col_start, num):
-        return num not in [self.cells[row][col].value for row in range(row_start, row_start + 3) for col in
-                           range(col_start, col_start + 3)]
+        return num not in [self.cells[row][col].value for row in range(row_start, row_start + 3) for col in range(col_start, col_start + 3)]
