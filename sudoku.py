@@ -99,7 +99,9 @@ def main():
 
     sudoku = SudokuGenerator(9, removed_cells)
     #print(removed_cells) # test
-    print(sudoku.get_board())
+    #print(sudoku.get_board())
+    sudoku.print_board() # print board for debugging
+    # TODO
     
     ## Quits when user chooses difficulty #
     pygame.quit()
