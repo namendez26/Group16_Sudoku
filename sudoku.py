@@ -1,5 +1,5 @@
 from sudoku_generator import *
-from cell import *
+from cell2 import *
 from grid import *
 import pygame,sys
 

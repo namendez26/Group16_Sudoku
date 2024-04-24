@@ -1,3 +1,5 @@
+import pygame
+
 class Cell:
     def __init__(self, value, row, col, screen):
         self.value = value
@@ -10,6 +12,10 @@ class Cell:
         self.sketched_value = None  # Initialize sketched_value attribute to None
 
     def draw(self, screen):
+        # Draws this cell, along with the value inside it.
+        # If this cell has a nonzero value, that value is displayed.
+        # Otherwise, no value is displayed in the cell.
+        # The cell is outlined red if it is currently selected.
         pygame.draw.rect(screen, (0, 0, 0), self.rect, 1)  # Draw cell outline
         if self.value != 0:
             text_surface = self.font.render(str(self.value), True, (0, 0, 0))  # Render cell value
@@ -28,5 +34,4 @@ class Cell:
         self.sketched_value = value
 
     def update(self):
-        pass  # Update cell appearance if fneeded
-
+        pass  # Update cell appearance if needed

@@ -107,7 +107,6 @@ class SudokuGenerator:
                 self.valid_in_col(col, num) and
                 self.valid_in_box(row - row % self.box_length, col - col % self.box_length, num))
 
-
     '''
     Fills the specified 3x3 box with values
     For each position, generates a random digit which has not yet been used in the box
@@ -128,8 +127,6 @@ class SudokuGenerator:
                     if self.is_valid(row_start + i, col_start + j, num):
                         self.board[row_start + i][col_start + j] = num
                         break
-
-
     
     '''
     Fills the three boxes along the main diagonal of the board
@@ -141,8 +138,6 @@ class SudokuGenerator:
     def fill_diagonal(self):
         for i in range(0, self.row_length, self.box_length):
             self.fill_box(i, i)
-
-
 
     '''
     DO NOT CHANGE
@@ -226,8 +221,6 @@ class SudokuGenerator:
         for _ in range(self.removed_cells):
             row, col = cells.pop()
             self.board[row][col] = 0
-
-
 
 '''
 DO NOT CHANGE
