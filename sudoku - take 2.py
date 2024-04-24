@@ -115,6 +115,35 @@ board = Board(9, 9, screen, difficulty, sudoku)
 # Main game loop
 running = True
 while running:
+####    # TODO TEST BUTTONS
+####    reset_button = pygame.Rect(button_x, 150, button_width, button_height)
+####    restart_button = pygame.Rect(button_x, 250, button_width, button_height)
+####    exit_button = pygame.Rect(button_x, 350, button_width, button_height)
+####
+####    pygame.draw.rect(screen, BUTTON_COLOR, reset_button)
+####    pygame.draw.rect(screen, BUTTON_COLOR, restart_button)
+####    pygame.draw.rect(screen, BUTTON_COLOR, exit_button)
+####
+####    if reset_button.collidepoint(pygame.mouse.get_pos()):
+####        pygame.draw.rect(screen, BUTTON_HOVER_COLOR, reset_button)
+####    elif restart_button.collidepoint(pygame.mouse.get_pos()):
+####        pygame.draw.rect(screen, BUTTON_HOVER_COLOR, restart_button)
+####    elif exit_button.collidepoint(pygame.mouse.get_pos()):
+####        pygame.draw.rect(screen, BUTTON_HOVER_COLOR, exit_button)
+####
+####    reset_text = font.render("Easy", True, BUTTON_TEXT_COLOR)
+####    restart_text = font.render("Medium", True, BUTTON_TEXT_COLOR)
+####    exit_text = font.render("Hard", True, BUTTON_TEXT_COLOR)
+####
+####    screen.blit(reset_text, (easy_button.x + 55, easy_button.y + 15))
+####    screen.blit(restart_text, (medium_button.x + 35, medium_button.y + 15))
+####    screen.blit(exit_text, (hard_button.x + 40, hard_button.y + 15))
+####
+####    easy_button = pygame.Rect(button_x, 150, button_width, button_height)
+####    medium_button = pygame.Rect(button_x, 250, button_width, button_height)
+####    hard_button = pygame.Rect(button_x, 350, button_width, button_height)
+
+
     for event in pygame.event.get():
         key = pygame.key.get_pressed()
         if event.type == pygame.QUIT:
