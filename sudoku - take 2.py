@@ -3,6 +3,8 @@
 import pygame
 import sys
 from sudoku_generator import *
+from cell2 import *
+from grid import *
 
 # Define some colors
 WHITE = (255, 255, 255)
@@ -95,4 +97,11 @@ elif difficulty == "Hard":
     removed_cells = 50
 
 sudoku = generate_sudoku(9, removed_cells)
-print(sudoku)  # For testing, print the generated Sudoku board
+#print(sudoku)  # For testing, print the generated Sudoku board
+
+board = Board(9, 9, screen, difficulty)
+board.draw()
+#board.draw # test
+#pygame.display.update()
+pygame.display.flip()
+
