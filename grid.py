@@ -4,12 +4,12 @@ from cell2 import *
 pygame.init()
 
 class Board:
-    def __init__(self, width, height, screen, difficulty):
+    def __init__(self, width, height, screen, difficulty, sudoku):
         self.width = width
         self.height = height
         self.screen = screen
         self.difficulty = difficulty
-        self.cells = [[Cell(0, row, col, screen) for col in range(9)] for row in range(9)]
+        self.cells = [[Cell(sudoku[row][col], row, col, screen) for col in range(9)] for row in range(9)]
         self.selected_cell = None
         self.font = pygame.font.Font(None, 36)  # Font for displaying text
         self.buttons = {

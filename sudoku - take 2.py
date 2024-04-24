@@ -97,11 +97,20 @@ elif difficulty == "Hard":
     removed_cells = 50
 
 sudoku = generate_sudoku(9, removed_cells)
-#print(sudoku)  # For testing, print the generated Sudoku board
+print(sudoku) # For testing, print the generated Sudoku board
 
-board = Board(9, 9, screen, difficulty)
-board.draw()
-#board.draw # test
-#pygame.display.update()
-pygame.display.flip()
+board = Board(9, 9, screen, difficulty, sudoku)
 
+# Main game loop
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+    
+    # Draw the board
+    board.draw()
+    pygame.display.flip()
+
+# Quit Pygame when the main loop exits
+pygame.quit()
