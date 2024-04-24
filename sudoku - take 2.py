@@ -28,6 +28,17 @@ pygame.display.set_caption("Sudoku Game")
 # Font for button text
 font = pygame.font.Font(None, 36)
 
+# TODO
+def get_cord(pos):
+    global x
+    x = pos[0]//(600 / 9)
+    global y
+    y = pos[1]//(500 / 9)
+x = 0
+y = 0
+
+
+
 # Main menu loop
 def main_menu():
     running = True
@@ -97,7 +108,7 @@ elif difficulty == "Hard":
     removed_cells = 50
 
 sudoku = generate_sudoku(9, removed_cells)
-print(sudoku) # For testing, print the generated Sudoku board
+# print(sudoku) # For testing, print the generated Sudoku board
 
 board = Board(9, 9, screen, difficulty, sudoku)
 
@@ -105,9 +116,32 @@ board = Board(9, 9, screen, difficulty, sudoku)
 running = True
 while running:
     for event in pygame.event.get():
+        key = pygame.key.get_pressed()
         if event.type == pygame.QUIT:
             running = False
-    
+###        print(event.type == pygame.K_1)
+##        if key[pygame.K_a] == True:
+##            board.select(1, 1) # test
+##            board.draw() # test??
+
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            pos = pygame.mouse.get_pos()
+#            row, col = get_cord(pos)
+            print(pos)
+            print(get_cord(pos))
+###        if event.type == pygame.KEYDOWN:
+###            if event.key == pygame.K_LEFT:
+###                x-= 1
+###                board.cells(cell.Cell.draw(screen))
+###            if event.key == pygame.K_RIGHT:
+###                x+= 1
+###            if event.key == pygame.K_UP:
+###                y-= 1
+###            if event.key == pygame.K_DOWN:
+###                y+= 1
+###            if event.key == pygame.K_1:
+###                val = 1
+     
     # Draw the board
     board.draw()
     pygame.display.flip()

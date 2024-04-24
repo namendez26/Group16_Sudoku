@@ -25,6 +25,16 @@ class Board:
             for col in range(9):
                 cell = self.cells[row][col]
                 cell.draw(self.screen)
+        # TODO TEST
+        for i in range(10):
+            if i % 3 == 0 :
+                thick = 7
+            else:
+                thick = 1
+            pygame.draw.line(self.screen, (0, 0, 0), (0, i * (500/9)), (500, i * (500/9)), thick)
+            pygame.draw.line(self.screen, (0, 0, 0), (i * (500/9), 0), (i * (500/9), 500), thick)     
+
+
 
         # Draw buttons below the board
         for btn_name, rect in self.buttons.items():

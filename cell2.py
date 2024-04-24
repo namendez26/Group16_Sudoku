@@ -6,7 +6,8 @@ class Cell:
         self.row = row
         self.col = col
         self.screen = screen
-        self.rect = pygame.Rect(50 + col * 50, 50 + row * 50, 50, 50)
+        self.rect = pygame.Rect(col * (500/9), row * (500/9), 500/9, 500/9)
+        #self.rect = pygame.Rect(50 + col * 50, 50 + row * 50, 50, 50)
         self.is_given = True if value != 0 else False
         self.font = pygame.font.Font(None, 36)  # Font for displaying text
         self.sketched_value = None  # Initialize sketched_value attribute to None
