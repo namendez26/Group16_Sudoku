@@ -107,37 +107,31 @@ game_in_progress = True
 while game_in_progress:
 
     print(f"Board check: {board.check_board()}")
-    print(f"Board full: {board.is_full}")
 
     # This isn't working how I want :( #
     if board.is_full():
         screen.fill(WHITE) # New screen!
-        for num in board:
-            if num == 0:
-                print("False")
-            else:
-                print("True")
-#        if board.check_board(): # If user correctly solves board....
-#            you_won = font.render("Game Won!", True, BLACK)
-#            screen.blit(you_won, (SCREEN_WIDTH // 2 - you_won.get_width() // 2, 50))
-#            # Properties for Exit Button #
-#            exit_button_end = pygame.Rect(button_x, 350, button_width, button_height)
-#            pygame.draw.rect(screen, BUTTON_COLOR, exit_button_end)
-#            pygame.draw.rect(screen, BLACK, exit_button_end, 2)  # Button outline
-#            exit_text_end = font.render("Exit", True, BUTTON_TEXT_COLOR)
-#            screen.blit(exit_text_end, (exit_button_end.x + 10, exit_button_end.y + 15))
-#            pygame.display.flip()
-#
-#        else:
-#            you_lost = font.render("Game Over :(", True, BLACK)
-#            screen.blit(you_lost, (SCREEN_WIDTH // 2 - you_lost.get_width() // 2, 50))
-#            # Properties for Exit Button #
-#            restart_button_end = pygame.Rect(button_x, 350, button_width, button_height)
-#            pygame.draw.rect(screen, BUTTON_COLOR, restart_button_end)
-#            pygame.draw.rect(screen, BLACK, restart_button_end, 2)  # Button outline
-#            restart_text_end = font.render("Restart", True, BUTTON_TEXT_COLOR)
-#            screen.blit(restart_text_end, (restart_button_end.x + 10, restart_button_end.y + 15))
-#            pygame.display.flip()
+        if board.check_board(): # If user correctly solves board....
+            you_won = font.render("Game Won!", True, BLACK)
+            screen.blit(you_won, (SCREEN_WIDTH // 2 - you_won.get_width() // 2, 50))
+            # Properties for Exit Button #
+            exit_button_end = pygame.Rect(button_x, 350, button_width, button_height)
+            pygame.draw.rect(screen, BUTTON_COLOR, exit_button_end)
+            pygame.draw.rect(screen, BLACK, exit_button_end, 2)  # Button outline
+            exit_text_end = font.render("Exit", True, BUTTON_TEXT_COLOR)
+            screen.blit(exit_text_end, (exit_button_end.x + 10, exit_button_end.y + 15))
+            pygame.display.flip()
+
+        else:
+            you_lost = font.render("Game Over :(", True, BLACK)
+            screen.blit(you_lost, (SCREEN_WIDTH // 2 - you_lost.get_width() // 2, 50))
+            # Properties for Exit Button #
+            restart_button_end = pygame.Rect(button_x, 350, button_width, button_height)
+            pygame.draw.rect(screen, BUTTON_COLOR, restart_button_end)
+            pygame.draw.rect(screen, BLACK, restart_button_end, 2)  # Button outline
+            restart_text_end = font.render("Restart", True, BUTTON_TEXT_COLOR)
+            screen.blit(restart_text_end, (restart_button_end.x + 10, restart_button_end.y + 15))
+            pygame.display.flip()
         #pygame.display.flip()
  
 
