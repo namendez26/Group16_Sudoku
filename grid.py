@@ -1,5 +1,5 @@
 import pygame
-from cell2 import *
+from cell import *
 
 pygame.init()
 
@@ -7,6 +7,8 @@ pygame.init()
 LINE_COLOR = (0, 0, 0) # Black
 THICKNESS_OUTER = 7
 THICKNESS_INNER = 1
+BUTTON_COLOR = (100, 100, 100)
+BUTTON_HOVER_COLOR = (150, 150, 150)
 
 class Board:
     def __init__(self, width, height, screen, difficulty, sudoku):
@@ -46,9 +48,15 @@ class Board:
 
         # Draw buttons below the board
         for btn_name, rect in self.buttons.items():
+            # Draw button with hover effect if mouse is over it
+            if rect.collidepoint(pygame.mouse.get_pos()):
+                pygame.draw.rect(self.screen, BUTTON_HOVER_COLOR, rect)
+            else:
+                pygame.draw.rect(self.screen, BUTTON_COLOR, rect)
             pygame.draw.rect(self.screen, (0, 0, 0), rect, 2)  # Draw button outline
             text_surface = self.font.render(btn_name, True, (0, 0, 0))  # Render button text
-            self.screen.blit(text_surface, (rect.x + 10, rect.y + 10))  # Draw button text
+            text_rect = text_surface.get_rect(center=rect.center)  # Center button text
+            self.screen.blit(text_surface, text_rect)  # Draw button text
 
     def select(self, row, col):
         # Marks the cell at (row, col) in the board as the currently selected cell.
@@ -154,30 +162,3 @@ class Board:
     def valid_in_col(self, col, num):
         # Check if the number is unique in its column.
         return [self.cells[row][col].value for row in range(9)].count(num) == 1
-
-
-
-#
-#    def check_board(self):
-#        # Check whether the Sudoku board is solved correctly.
-#        for row in range(9):
-#            for col in range(9):
-#                if not self.is_valid(row, col, self.cells[row][col].value):
-#                    return False
-#        return True
-#
-#    # Everything below here is supposed to be in Sudoku_Generator, no? #
-#
-#    def is_valid(self, row, col, num):
-#        return (self.valid_in_row(row, num) and
-#                self.valid_in_col(col, num) and
-#                self.valid_in_box(row - row % 3, col - col % 3, num))
-#
-#    def valid_in_row(self, row, num):
-#        return num not in [cell.value for cell in self.cells[row]]
-#
-#    def valid_in_col(self, col, num):
-#        return num not in [self.cells[row][col].value for row in range(9)]
-#
-#    def valid_in_box(self, row_start, col_start, num):
-#        return num not in [self.cells[row][col].value for row in range(row_start, row_start + 3) for col in range(col_start, col_start + 3)]

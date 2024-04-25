@@ -22,7 +22,7 @@ while sudoku:
     
     # directional pad creator #
     key = pygame.key.get_pressed() # currently pressed key [to be moved in-place (x,y)]
-    if key[pygame.K_a] == True: # if A
+    if key[pygame.K_DELETE] == True: # if A
         player.move_ip(-1,0) # go left
     elif key[pygame.K_d] == True: # if D
         player.move_ip(1,0) # go right

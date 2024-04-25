@@ -39,6 +39,5 @@ class Cell:
                         sketched_text_surface = self.font.render(str(self.sketched_value), True, (128, 128, 128)) # Sketches value in grey
                         screen.blit(sketched_text_surface, (self.rect.x + 5, self.rect.y + 5))
 
-
     def update(self):
         pass  # Update cell appearance if needed
