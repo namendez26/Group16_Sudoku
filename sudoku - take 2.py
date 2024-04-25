@@ -224,17 +224,17 @@ while game_in_progress:
                             cell.set_cell_value(0)
                             cell.set_sketched_value(None)
 
-    # Update the underlying 2D board with the values in all cells
-    board.update_board()
+        # Update the underlying 2D board with the values in all cells
+        board.update_board()
 
-    # Clear the screen
-    screen.fill(WHITE)
+        # Clear the screen
+        screen.fill(WHITE)
 
-    # Draw the board
-    board.draw()
+        # Draw the board
+        board.draw()
 
-    # Update the display
-    pygame.display.flip()
+        # Update the display
+        pygame.display.flip()
 
 # Quit Pygame when the main loop exits
 #pygame.quit()
