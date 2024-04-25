@@ -136,25 +136,48 @@ class Board:
         return None
 
     def check_board(self):
-        # Check whether the Sudoku board is solved correctly.
+        # Check whether the Sudoku board has unique numbers in each row and column.
         for row in range(9):
             for col in range(9):
                 if not self.is_valid(row, col, self.cells[row][col].value):
                     return False
         return True
 
-    # Everything below here is supposed to be in Sudoku_Generator, no? #
-
     def is_valid(self, row, col, num):
         return (self.valid_in_row(row, num) and
-                self.valid_in_col(col, num) and
-                self.valid_in_box(row - row % 3, col - col % 3, num))
+                self.valid_in_col(col, num))
 
     def valid_in_row(self, row, num):
-        return num not in [cell.value for cell in self.cells[row]]
+        # Check if the number is unique in its row.
+        return [cell.value for cell in self.cells[row]].count(num) == 1
 
     def valid_in_col(self, col, num):
-        return num not in [self.cells[row][col].value for row in range(9)]
+        # Check if the number is unique in its column.
+        return [self.cells[row][col].value for row in range(9)].count(num) == 1
 
-    def valid_in_box(self, row_start, col_start, num):
-        return num not in [self.cells[row][col].value for row in range(row_start, row_start + 3) for col in range(col_start, col_start + 3)]
+
+
+#
+#    def check_board(self):
+#        # Check whether the Sudoku board is solved correctly.
+#        for row in range(9):
+#            for col in range(9):
+#                if not self.is_valid(row, col, self.cells[row][col].value):
+#                    return False
+#        return True
+#
+#    # Everything below here is supposed to be in Sudoku_Generator, no? #
+#
+#    def is_valid(self, row, col, num):
+#        return (self.valid_in_row(row, num) and
+#                self.valid_in_col(col, num) and
+#                self.valid_in_box(row - row % 3, col - col % 3, num))
+#
+#    def valid_in_row(self, row, num):
+#        return num not in [cell.value for cell in self.cells[row]]
+#
+#    def valid_in_col(self, col, num):
+#        return num not in [self.cells[row][col].value for row in range(9)]
+#
+#    def valid_in_box(self, row_start, col_start, num):
+#        return num not in [self.cells[row][col].value for row in range(row_start, row_start + 3) for col in range(col_start, col_start + 3)]
