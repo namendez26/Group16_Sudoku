@@ -23,9 +23,9 @@ class Board:
         self.selected_cell = None
         self.font = pygame.font.Font(None, 36)  # Font for displaying text
         self.buttons = {
-            "Reset": pygame.Rect(50, 550, 100, 50),
-            "Restart": pygame.Rect(200, 550, 100, 50),
-            "Exit": pygame.Rect(350, 550, 100, 50)
+            "Reset": pygame.Rect(650/3 - 140, 550, 100, 50),
+            "Restart": pygame.Rect(650/3, 550, 100, 50),
+            "Exit": pygame.Rect(650/3 + 140, 550, 100, 50)
         }
 
     def draw(self):
@@ -33,7 +33,11 @@ class Board:
         # Draws every cell on this board.
         
         # Clear the screen
-        self.screen.fill((255, 255, 255))
+        #self.screen.fill((255, 255, 255))
+        background_image = pygame.image.load("matrix.jpg")
+        #screen.fill(GRAY)
+        self.screen.blit(background_image, (0, 0))
+ 
         
         # Draw Sudoku grid
         for row in range(9):

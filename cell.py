@@ -25,18 +25,20 @@ class Cell:
                 # Draws this cell, along with the value inside it.
                 # If this cell has a nonzero value, that value is displayed.
                 # Otherwise, no value is displayed in the cell.
-                # The cell is outlined red if it is currently selected.
+                # The cell is outlined green if it is currently selected.
                 if self.selected:
-                    pygame.draw.rect(screen, (255, 0, 0), self.rect, 4)  # Draw red outline if selected
+                    pygame.draw.rect(screen, (0, 200, 0), self.rect, 4)  # Draw green outline if selected
                 else:
                     pygame.draw.rect(screen, (0, 0, 0), self.rect, 1)  # Draw cell outline
+                    pygame.draw.rect(screen, (100, 100, 100), self.rect)  # Draw cell outline
                 if self.value != 0:
-                    text_surface = self.font.render(str(self.value), True, (0, 0, 0))  # Render cell value
+                    text_surface = self.font.render(str(self.value), True, (255, 255, 255))  # Render cell value
                     screen.blit(text_surface, (self.rect.x + 20, self.rect.y + 15))  # Draw cell value
                 else:
                     if self.sketched_value is not None:
                         # Render sketched value if exists
-                        sketched_text_surface = self.font.render(str(self.sketched_value), True, (128, 128, 128)) # Sketches value in grey
+                        #sketched_text_surface = self.font.render(str(self.sketched_value), True, (128, 128, 128)) # Sketches value in grey
+                        sketched_text_surface = self.font.render(str(self.sketched_value), True, (0, 200, 0)) # Sketches value in green
                         screen.blit(sketched_text_surface, (self.rect.x + 5, self.rect.y + 5))
 
     def update(self):

@@ -33,18 +33,23 @@ button_x = (SCREEN_WIDTH - button_width) // 2
 easy_button = pygame.Rect(button_x, 150, button_width, button_height)
 medium_button = pygame.Rect(button_x, 250, button_width, button_height)
 hard_button = pygame.Rect(button_x, 350, button_width, button_height)
+debug_button = pygame.Rect(button_x, 450, button_width, button_height)
 
 def main_menu():
     menu = True
     while menu:
         
         # Clear the screen
-        screen.fill(WHITE)
-        
+        #screen.fill(WHITE)
+        background_image = pygame.image.load("matrix.jpg")
+        #screen.fill(GRAY)
+        screen.blit(background_image, (0, 0))
+         
         # Draw buttons
         pygame.draw.rect(screen, BUTTON_COLOR, easy_button)
         pygame.draw.rect(screen, BUTTON_COLOR, medium_button)
         pygame.draw.rect(screen, BUTTON_COLOR, hard_button)
+        pygame.draw.rect(screen, BUTTON_COLOR, debug_button)
         
         # Draw button hover effect
         if easy_button.collidepoint(pygame.mouse.get_pos()):
@@ -53,18 +58,32 @@ def main_menu():
             pygame.draw.rect(screen, BUTTON_HOVER_COLOR, medium_button)
         elif hard_button.collidepoint(pygame.mouse.get_pos()):
             pygame.draw.rect(screen, BUTTON_HOVER_COLOR, hard_button)
-        
+
+        elif debug_button.collidepoint(pygame.mouse.get_pos()):
+            pygame.draw.rect(screen, BUTTON_HOVER_COLOR, debug_button)
+         
         # Add text to buttons
         easy_text = font.render("Easy", True, BUTTON_TEXT_COLOR)
         medium_text = font.render("Medium", True, BUTTON_TEXT_COLOR)
         hard_text = font.render("Hard", True, BUTTON_TEXT_COLOR)
-        screen.blit(easy_text, (easy_button.x, easy_button.y + 15))
-        screen.blit(medium_text, (medium_button.x, medium_button.y + 15))
-        screen.blit(hard_text, (hard_button.x, hard_button.y + 15))
+        debug_text = font.render("Debug", True, BUTTON_TEXT_COLOR)
+
+        # center the text
+        easycenter = easy_text.get_rect(center=easy_button.center)
+        mediumcenter = medium_text.get_rect(center=medium_button.center)
+        hardcenter = hard_text.get_rect(center=hard_button.center)
+        debugcenter = debug_text.get_rect(center=debug_button.center)
+
+        screen.blit(easy_text, easycenter)
+        screen.blit(medium_text, mediumcenter)
+        screen.blit(hard_text, hardcenter)
+        screen.blit(debug_text, debugcenter)
         
         # Add LEVEL text
-        level_text = font.render("Choose a difficulty:", True, BLACK)
-        screen.blit(level_text, (SCREEN_WIDTH // 2 - level_text.get_width() // 2, 50))
+        level_text1 = font.render("Welcome to the MATRIX.", True, WHITE)
+        level_text2 = font.render("Choose a difficulty:", True, WHITE)
+        screen.blit(level_text1, (SCREEN_WIDTH // 2 - level_text1.get_width() // 2, 40))
+        screen.blit(level_text2, (SCREEN_WIDTH // 2 - level_text2.get_width() // 2, 90))
         
         for event in pygame.event.get():
                     if event.type == pygame.QUIT:
@@ -78,6 +97,9 @@ def main_menu():
                             return "Medium"
                         elif hard_button.collidepoint(mouse_pos):
                             return "Hard"
+                        elif debug_button.collidepoint(mouse_pos):
+                            return "Debug"
+
 
         # Update the display
         pygame.display.flip()
@@ -98,17 +120,21 @@ def game_end(board):
                         main()
 
         # Draw the game over screen
-        screen.fill(WHITE)  # New screen!
-
+        #screen.fill(WHITE)  # New screen!
+        background_image = pygame.image.load("matrix.jpg")
+        #screen.fill(GRAY)
+        screen.blit(background_image, (0, 0))
+         
         end_button = pygame.Rect(button_x, 350, button_width, button_height)
         pygame.draw.rect(screen, BUTTON_COLOR, end_button)
-        pygame.draw.rect(screen, BLACK, end_button, 2)  # Button outline
+        # BLACK TO WHITE
+        pygame.draw.rect(screen, WHITE, end_button, 2)  # Button outline
         
         if board.check_board():  # If user correctly solves the board
-            end_text = font.render("Game Won!", True, BLACK)
+            end_text = font.render("Game Won!", True, WHITE)
             end_button_text = font.render("Exit", True, BUTTON_TEXT_COLOR)
         else:
-            end_text = font.render("Game Over :(", True, BLACK)
+            end_text = font.render("Game Over :(", True, WHITE)
             end_button_text = font.render("Restart", True, BUTTON_TEXT_COLOR)
         
         screen.blit(end_text, (SCREEN_WIDTH // 2 - end_text.get_width() // 2, 50))
@@ -128,6 +154,9 @@ def main():
         removed_cells = 40
     elif difficulty == "Hard":
         removed_cells = 50
+    elif difficulty == "Debug":
+        removed_cells = 1
+
 
     # Generate Sudoku puzzle
     sudoku = generate_sudoku(9, removed_cells)
@@ -168,7 +197,11 @@ def main():
                         board.reset_to_original()  # Board
                     elif btn_name == "Restart" and rect.collidepoint(pos):  # if user clicks "Restart"...
                         # Clear the screen
-                        screen.fill(WHITE)
+                        #screen.fill(WHITE)
+                        background_image = pygame.image.load("matrix.jpg")
+                        #screen.fill(GRAY)
+                        screen.blit(background_image, (0, 0))
+         
                         # Show the main menu again to select difficulty [running main() again]
                         main()
                     elif btn_name == "Exit" and rect.collidepoint(pos):  # if user clicks "Exit"...
@@ -236,7 +269,11 @@ def main():
             # Update the underlying 2D board with the values in all cells
             board.update_board()
             # Clear the screen
-            screen.fill(WHITE)
+            #screen.fill(WHITE)
+            background_image = pygame.image.load("matrix.jpg")
+            #screen.fill(GRAY)
+            screen.blit(background_image, (0, 0))
+         
             # Draw the board
             board.draw()
             # Update the display
